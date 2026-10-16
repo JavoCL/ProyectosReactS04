@@ -8,6 +8,10 @@ type Propiedades = {
 // List necesita que le entregue cuales son los
 // datos a mostrar en pantalla para la lista
 function List({ datos, alSeleccionar }: Propiedades) {
+  // Declaracion de un state que guarda el indice actual de la lista
+  // Se declara como array[2], 1° el nombre interno del estado, 2° el nombre
+  // del metodo que cambia el valor del estado
+  // (por convencion es set+NombrePascalCaseEstado)
   const [indice, setIndice] = useState(0);
 
   // Funcion interna que toma un elemento entrante 'mensaje'
@@ -22,6 +26,11 @@ function List({ datos, alSeleccionar }: Propiedades) {
       alSeleccionar(mensaje);
     }
   };
+
+  // Si la lista no tiene elementos, muestra un mensaje
+  if (datos.length == 0) {
+    return <p className="lead">No hay elementos que mostrar en la lista</p>;
+  }
 
   return (
     <ul className="list-group" style={{ width: "350px" }}>
