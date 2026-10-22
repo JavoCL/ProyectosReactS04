@@ -34,4 +34,12 @@ export const PRODUCTOS: Producto[] = [
     urlImagen: "img/producto03.jpg",
     altImagen: "La kalaora meh",
   },
+  {
+    id: "D4",
+    nombre: "Kalaora roja",
+    descripcion: "Una caladora mala de jueguete.",
+    precio: "990",
+    urlImagen: "img/producto04.jpg",
+    altImagen: "La kalaora roja",
+  },
 ];

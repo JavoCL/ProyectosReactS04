@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 interface Props {
   clase?: string;
   children: ReactNode; // Como se ve el boton (texto o imagen)
-  alHacerClic: () => void;
+  alHacerClic?: () => void;
 }
 
 function Boton({ clase = "btn btn-primary", children, alHacerClic }: Props) {

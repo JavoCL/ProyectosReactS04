@@ -1,14 +1,10 @@
 import { Fragment } from "react/jsx-runtime";
 import Contenedor from "../components/Contenedor";
-import Boton from "../components/Boton";
 import Tarjeta from "../components/Tarjeta";
 import { PRODUCTOS } from "../data/Producto";
+import { Link } from "react-router-dom";
 
 function Inicio() {
-  function AbrirInfoProducto(nombreProducto: string) {
-    console.log("Abri el producto: " + nombreProducto);
-  }
-
   return (
     <Fragment>
       <h3 className="text-center" style={{ margin: "15px" }}>
@@ -18,6 +14,10 @@ function Inicio() {
 
       <Contenedor clase="container text-center">
         <div className="row">
+          {/* Recorremos el arreglo de productos en Producto.ts
+              y para cada elemento (identificado auxiliarmente como 'prod')
+              va a generar la tarjeta del producto destacado con los datos
+              de prod */}
           {PRODUCTOS.map((prod) => (
             <div className="col">
               <Tarjeta
@@ -26,14 +26,10 @@ function Inicio() {
                 urlImagen={prod.urlImagen}
                 altImagen={prod.altImagen}
               >
-                <p>${prod.precio}</p>
-                {/* <Boton
-                  alHacerClic={() => {
-                    AbrirInfoProducto("Kalaora wena");
-                  }}
-                >
+                <p className="card-text fw-bold">${prod.precio}</p>
+                <Link to={`/producto/${prod.id}`} className="btn btn-primary">
                   +Info
-                </Boton> */}
+                </Link>
               </Tarjeta>
             </div>
           ))}
