@@ -1,6 +1,16 @@
 import { Fragment } from "react/jsx-runtime";
+import Contenedor from "./components/Contenedor";
+import Inicio from "./pages/Inicio";
+// Para enrutamiento o navegacion a otras paginas
+import { Routes, Route } from "react-router-dom";
+import Nosotros from "./pages/Nosotros";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import Producto2 from "./pages/Producto2";
 
 function App() {
+  // Definimos un state que guarde el nombre la pagina actual
+  const [paginaActual, setPaginaActual] = useState("Inicio");
   return (
     <Fragment>
       <br />
@@ -10,9 +20,7 @@ function App() {
       {/* ============== NAV BAR ============== */}
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="index.html">
-            Inicio
-          </a>
+          <p className="navbar-brand">{paginaActual}</p>
           <button
             className="navbar-toggler"
             type="button"
@@ -27,28 +35,40 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href="index.html"
+                <Link
+                  className="nav-link"
+                  to="/"
+                  onClick={() => setPaginaActual("Inicio")}
                 >
                   Inicio
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="productos.html">
+                <Link
+                  className="nav-link"
+                  to="/productos"
+                  onClick={() => setPaginaActual("Productos")}
+                >
                   Productos
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="contacto.html">
+                <Link
+                  className="nav-link"
+                  to="/contacto"
+                  onClick={() => setPaginaActual("Contacto")}
+                >
                   Contacto
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="about.html">
+                <Link
+                  className="nav-link"
+                  to="/nosotros"
+                  onClick={() => setPaginaActual("Sobre nosotros")}
+                >
                   Sobre nosotros
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -56,102 +76,57 @@ function App() {
       </nav>
       {/* ===================================== */}
 
-      <main>
-        <div className="container">
-          <h3 className="text-center"> Productos Destacados HOY</h3>
+      {/* ============== MAIN ============== */}
 
-          <div className="container text-center">
-            <div className="row">
-              <div className="col">
-                <div className="card" style={{ width: "18rem" }}>
-                  <img
-                    src="img/producto01.jpg"
-                    className="card-img-top"
-                    alt="La Kalaora wena"
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title TextoTarjeta">Kalaora wena</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card’s content.
-                    </p>
-                    <a href="#" className="btn btn-primary">
-                      Go somewhere
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card" style={{ width: "18rem" }}>
-                  <img
-                    src="img/producto02.jpg"
-                    className="card-img-top"
-                    alt="La Kalaora prime"
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Kalaora prime</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card’s content.
-                    </p>
-                    <a href="#" className="btn btn-primary">
-                      Go somewhere
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card" style={{ width: "18rem" }}>
-                  <img
-                    src="img/producto03.jpg"
-                    className="card-img-top"
-                    alt="La Kalaora meh"
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Kalaora meh 🤷‍♂️</h5>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card’s content.
-                    </p>
-                    <a href="#" className="btn btn-primary">
-                      Go somewhere
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <main>
+        <Contenedor>
+          {/* Estas son las rutas de navegacion dentro del sitio */}
+          <Routes>
+            <Route path="/" element={<Inicio />} />
+            <Route path="/nosotros" element={<Nosotros />}></Route>
+            <Route path="/producto" element={<Producto2 />}></Route>
+          </Routes>
+        </Contenedor>
       </main>
 
       {/* ============== FOOTER ============== */}
       <footer className="py-3 my-4">
         <ul className="nav justify-content-center border-bottom pb-3 mb-3">
           <li className="nav-item">
-            <a href="inicio.html" className="nav-link px-2 text-body-secondary">
+            <Link
+              className="nav-link px-2 text-body-secondary"
+              to="/"
+              onClick={() => setPaginaActual("Inicio")}
+            >
               Inicio
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a
-              href="productos.html"
+            <Link
               className="nav-link px-2 text-body-secondary"
+              to="/productos"
+              onClick={() => setPaginaActual("Productos")}
             >
               Productos
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a
-              href="contacto.html"
+            <Link
               className="nav-link px-2 text-body-secondary"
+              to="/contacto"
+              onClick={() => setPaginaActual("Contacto")}
             >
               Contacto
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a href="about.html" className="nav-link px-2 text-body-secondary">
+            <Link
+              className="nav-link px-2 text-body-secondary"
+              to="/nosotros"
+              onClick={() => setPaginaActual("Sobre nosotros")}
+            >
               Sobre nosotros
-            </a>
+            </Link>
           </li>
         </ul>
         <p className="text-center text-body-secondary">
